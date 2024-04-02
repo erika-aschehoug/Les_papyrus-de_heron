@@ -1,5 +1,5 @@
 import sorting
-import time
+import timeit
 
 
 
@@ -19,65 +19,43 @@ def main():
     choice = int(input())
 
     if choice == 1:
-        start_time = time.time()
-        sorted_arr = sorting.selection_sort(arr)
-        end_time = time.time()
+        time_taken = timeit.timeit(lambda: sorting.selection_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.selection_sort(sorted_arr)}")
-        time_taken = (end_time - start_time) * 1000 
-        print (f"Time taken: {time_taken:.6f} ms")
+        print (f"List after sorting: {sorting.selection_sort(arr)}")
+        print (f"Time taken: {time_taken:.10f} ms")
     elif choice == 2:
-        start_time = time.time()
-        sorted_arr = sorting.bubble_sort(arr)
-        end_time = time.time()
+        time_taken = timeit.timeit(lambda: sorting.bubble_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.bubble_sort(sorted_arr)}")
-        time_taken = (end_time - start_time) * 1000
-        print (f"Time taken: {time_taken:.6f} ms")
+        print (f"List after sorting: {sorting.bubble_sort(arr)}")
+        print (f"Time taken: {time_taken:.10f} ms")
     elif choice == 3:
-        start_time = time.time()
-        sorted_arr = sorting.insertion_sort(arr)
-        end_time = time.time()
+        time_taken = timeit.timeit(lambda: sorting.insertion_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.insertion_sort(sorted_arr)}")
-        time_taken = (end_time - start_time) * 1000
-        print (f"Time taken: {time_taken:.6f} ms")
+        print (f"List after sorting: {sorting.insertion_sort(arr)}")
+        print (f"Time taken: {time_taken:.10f} ms")
     elif choice == 4:
-        start_time = time.time()
-        sorted_arr = sorting.merge_sort(arr)
-        end_time = time.time()
+        time_taken = timeit.timeit(lambda: sorting.merge_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.merge_sort(sorted_arr)}")
-        time_taken = (end_time - start_time) * 1000
-        print (f"Time taken: {time_taken:.6f} ms")
+        print (f"List after sorting: {sorting.merge_sort(arr)}")
+        print (f"Time taken: {time_taken:.10f} ms")
     elif choice == 5:
-        start_time = time.time()
-        sorted_arr = sorting.quick_sort(arr)
-        end_time = time.time()
+        time_taken = timeit.timeit(lambda: sorting.quick_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.quick_sort(sorted_arr)}")
-        time_taken = (end_time - start_time) * 1000
-        print (f"Time taken: {time_taken:.6f} ms")
+        print (f"List after sorting: {sorting.quick_sort(arr)}")
+        print (f"Time taken: {time_taken:.10f} ms")
     elif choice == 6:
-        start_time = time.time()
-        sorted_arr = sorting.heapify(arr)
-        end_time = time.time()
+        time_taken = timeit.timeit(lambda: sorting.heapify(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.heap_sort(sorted_arr)}")
-        time_taken = (end_time - start_time) * 1000
-        print (f"Time taken: {time_taken:.6f} ms")
+        print (f"List after sorting: {sorting.heapify(arr)}")
+        print (f"Time taken: {time_taken:.10f} ms")
     elif choice == 7:
-        start_time = time.time()
-        sorted_arr = sorting.comb_sort(arr)
-        end_time = time.time()
+        time_taken = timeit.timeit(lambda: sorting.comb_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.comb_sort(sorted_arr)}")
-        time_taken = (end_time - start_time) * 1000
-        print (f"Time taken: {time_taken:.6f} ms")
+        print (f"List after sorting: {sorting.comb_sort(arr)}")
+        print (f"Time taken: {time_taken:.10f} ms")
     else:
         print (f"\nInvalid choice !")
         return
-    
     print (f"\nThank you for using the Sorting Algorithm Visualizer !")
     print (f"\nDo you want to continue ? (y/n)")
     choice = input()
