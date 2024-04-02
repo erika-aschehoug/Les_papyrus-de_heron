@@ -1,9 +1,7 @@
-import sorting
-import timeit
-
-
 
 def main():
+    import sorting
+    import timeit
     print (f"\nWelcome to the Sorting Algorithm Visualizer !")
     print (f"\nEnter a list of real numbers separated by space:")
     arr = list(map(int, input().split()))
