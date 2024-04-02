@@ -60,7 +60,7 @@ def main():
         print (f"Time taken: {time_taken:.6f} ms")
     elif choice == 6:
         start_time = time.time()
-        sorted_arr = sorting.heap_sort(arr)
+        sorted_arr = sorting.heapify(arr)
         end_time = time.time()
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.heap_sort(sorted_arr)}")
