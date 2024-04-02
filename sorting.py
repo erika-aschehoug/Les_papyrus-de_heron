@@ -76,6 +76,7 @@ def heapify(arr, n, i): # O(nlogn) time complexity and O(1) space complexity
     if largest != i:
         arr[i], arr[largest] = arr[largest], arr[i]
         heapify(arr, n, largest)
+    return arr 
 
 def comb_sort(arr): # O(n^2) time complexity and O(1) space complexity
     n = len(arr) 
