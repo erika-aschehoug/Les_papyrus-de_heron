@@ -22,37 +22,37 @@ def main():
         time_taken = timeit.timeit(lambda: sorting.selection_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.selection_sort(arr)}")
-        print (f"Time taken: {time_taken:.10f} ms")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 2:
         time_taken = timeit.timeit(lambda: sorting.bubble_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.bubble_sort(arr)}")
-        print (f"Time taken: {time_taken:.10f} ms")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 3:
         time_taken = timeit.timeit(lambda: sorting.insertion_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.insertion_sort(arr)}")
-        print (f"Time taken: {time_taken:.10f} ms")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 4:
         time_taken = timeit.timeit(lambda: sorting.merge_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.merge_sort(arr)}")
-        print (f"Time taken: {time_taken:.10f} ms")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 5:
         time_taken = timeit.timeit(lambda: sorting.quick_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.quick_sort(arr)}")
-        print (f"Time taken: {time_taken:.10f} ms")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 6:
         time_taken = timeit.timeit(lambda: sorting.heapify(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.heapify(arr)}")
-        print (f"Time taken: {time_taken:.10f} ms")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 7:
         time_taken = timeit.timeit(lambda: sorting.comb_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.comb_sort(arr)}")
-        print (f"Time taken: {time_taken:.10f} ms")
+        print (f"Time taken: {time_taken:.10e} ms")
     else:
         print (f"\nInvalid choice !")
         return
