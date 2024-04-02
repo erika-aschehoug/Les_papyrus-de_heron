@@ -44,10 +44,10 @@ def main():
         print (f"List after sorting: {sorting.quick_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 6:
-        time_taken = timeit.timeit(lambda: sorting.heapify(arr), number=1)
-        print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.heapify(arr)}")
-        print (f"Time taken: {time_taken:.10e} ms")
+        time_taken = timeit.timeit(lambda: sorting.heap_sort(arr), number=1)
+        print(f"\nListe avant le tri : {original_arr}")
+        print(f"Liste après le tri : {sorting.heap_sort(arr)}")
+        print(f"Temps écoulé : {time_taken:.10e} ms")
     elif choice == 7:
         time_taken = timeit.timeit(lambda: sorting.comb_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
