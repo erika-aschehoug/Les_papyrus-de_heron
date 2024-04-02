@@ -1,6 +1,6 @@
 # Description: This file contains the implementation of various sorting algorithms.
 
- 
+
 def selection_sort(arr): # O(n^2) time complexity and O(1) space complexity 
     n = len(arr)
     for i in range(n):
