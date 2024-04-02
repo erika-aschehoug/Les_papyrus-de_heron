@@ -1,7 +1,8 @@
 import sorting
 
 def main():
-    print (f"Enter a list of numbers separated by spaces:")
+    print (f"\nWelcome to the Sorting Algorithm Visualizer !")
+    print (f"\nEnter a list of real numbers separated by space:")
     arr = list(map(int, input().split()))
     print (f"Select a sorting algorithm:")
     print (f"1. Selection Sort")
@@ -32,5 +33,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+
 
