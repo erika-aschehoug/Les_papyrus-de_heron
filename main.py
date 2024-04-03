@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 def execution_times_graph(execution_times):
     plt.bar(execution_times.keys(), execution_times.values())
     plt.xlabel('Sorting Algorithms')
-    plt.ylabel('Execution Time (in seconds)')
+    plt.ylabel('Execution Time (in milliseconds)')
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
     plt.title('Execution Times of Sorting Algorithms')
     plt.show()
 
