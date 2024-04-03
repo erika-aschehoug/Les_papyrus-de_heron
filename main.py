@@ -68,6 +68,7 @@ def main():
     else:
         print (f"\nInvalid choice !")
         return
+    
     print (f"\nThank you for using the Sorting Algorithm Visualizer !")
     print (f"\nDo you want to continue ? (y/n)")
     choice = input()
