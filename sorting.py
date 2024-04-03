@@ -1,6 +1,6 @@
 # Description: This file contains the implementation of various sorting algorithms.
 
- 
+
 def selection_sort(arr): # O(n^2) time complexity and O(1) space complexity 
     n = len(arr)
     for i in range(n):
@@ -65,7 +65,7 @@ def quick_sort(arr): # O(nlogn) time complexity and O(logn) space complexity
     right = [x for x in arr if x > pivot]
     return quick_sort(left) + middle + quick_sort(right)
 
-def heapify(arr, n, i): # O(nlogn) time complexity and O(1) space complexity
+def heap_sort(arr, n, i): # O(logn) time complexity and O(1) space complexity
     largest = i
     l = 2 * i + 1
     r = 2 * i + 2
@@ -75,8 +75,7 @@ def heapify(arr, n, i): # O(nlogn) time complexity and O(1) space complexity
         largest = r
     if largest != i:
         arr[i], arr[largest] = arr[largest], arr[i]
-        heapify(arr, n, largest)
-    return arr 
+        heap_sort(arr, n, largest)
 
 def comb_sort(arr): # O(n^2) time complexity and O(1) space complexity
     n = len(arr) 
