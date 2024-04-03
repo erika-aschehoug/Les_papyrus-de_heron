@@ -11,7 +11,6 @@ def execution_times_graph(execution_times):
     plt.show()
 
 def main():
-
     print (f"\nWelcome to the Sorting Algorithm Visualizer !")
     print (f"\nEnter a list of real numbers separated by space:")
     arr = list(map(int, input().split()))
