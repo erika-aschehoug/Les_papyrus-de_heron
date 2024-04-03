@@ -14,7 +14,7 @@ def execution_times_graph(execution_times, arr, original_arr):
     plt.show()
 
 def main():
-    print (f"\nWelcome to the Sorting Algorithm Visualizer !")
+    print (f"\nWelcome to the Sorting Algorithm command line interface !")
     print (f"\nEnter a list of real numbers separated by space:")
     arr = list(map(int, input().split()))
     original_arr = arr.copy()
@@ -83,7 +83,7 @@ def main():
     if choice == 'y' or choice == 'Y':
         main()
     else:
-        print (f"\nThank you for using the Sorting Algorithm Visualizer !\n")
+        print (f"\nThank you for using the Sorting Algorithm command line interface !\n")
         return
     
 
