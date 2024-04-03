@@ -75,19 +75,13 @@ def main():
     else:
         print (f"\nInvalid choice !")
         return
-    
-    print (f"\nThank you for using the Sorting Algorithm Visualizer !")
     print (f"\nDo you want to continue sortings ? (y/n)")
     choice = input()
     if choice == 'y' or choice == 'Y':
         main()
     else:
-        print (f"\nDo you want to display graph of execution times of sorting algorithms ? (y/n)")
-        choice = input()
-        if choice == 'y' or choice == 'Y':
-            return execution_times_graph
-        else:
-            return
+        print (f"\nThank you for using the Sorting Algorithm Visualizer !\n")
+        return
     
 
 if __name__ == "__main__":
