@@ -2,12 +2,14 @@ from Terminal_interface import sorting
 import timeit
 import matplotlib.pyplot as plt
 
-def execution_times_graph(execution_times):
+def execution_times_graph(execution_times, arr, original_arr):
     plt.bar(execution_times.keys(), execution_times.values())
     plt.xlabel('Sorting Algorithms')
     plt.ylabel('Execution Time (in milliseconds)')
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
     plt.title('execution time depending on different sorting algorithms')
+    plt.text(0.5, 1.08, f'List before sorting : {original_arr}', transform=plt.gca().transAxes, ha='center')
+    plt.text(0.5, 1.05, f'List after sorting : {arr}', transform=plt.gca().transAxes, ha='center')
     plt.show()
 
 def main():
@@ -71,7 +73,7 @@ def main():
             print(f"\nList before sorting: {original_arr}")
             print(f"List after sorting: {arr}")
             print(f"Time taken: {time_taken:.10e} ms")
-        execution_times_graph(execution_times)
+        execution_times_graph(execution_times, arr, original_arr)
     else:
         print (f"\nInvalid choice !")
         return
