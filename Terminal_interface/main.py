@@ -1,4 +1,4 @@
-import sorting
+from Terminal_interface import sorting
 import timeit
 import matplotlib.pyplot as plt
 
