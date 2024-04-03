@@ -10,6 +10,7 @@ def execution_times_graph(execution_times, arr, original_arr):
     plt.title('execution time depending on different sorting algorithms')
     plt.text(0.5, 1.08, f'List before sorting : {original_arr}', transform=plt.gca().transAxes, ha='center')
     plt.text(0.5, 1.05, f'List after sorting : {arr}', transform=plt.gca().transAxes, ha='center')
+    plt.text(0.5, 1.11, f'List length : {len(arr)}', transform=plt.gca().transAxes, ha='center')
     plt.show()
 
 def main():
