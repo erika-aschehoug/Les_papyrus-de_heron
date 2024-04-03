@@ -1,39 +1,59 @@
 import sorting
-import time
+import timeit
 import matplotlib.pyplot as plt
 
 def main():
-    print("\nWelcome to the Sorting Algorithm Visualizer!")
-    print("\nEnter a list of real numbers separated by space:")
-    arr = list(map(int, input().split()))
 
-    print("Select a sorting algorithm:")
-    print("1. Selection Sort")
-    print("2. Bubble Sort")
-    print("3. Insertion Sort")
-    print("4. Merge Sort")
-    print("5. Quick Sort")
-    print("6. Heap Sort")
-    print("7. Comb Sort")
+    print (f"\nWelcome to the Sorting Algorithm Visualizer !")
+    print (f"\nEnter a list of real numbers separated by space:")
+    arr = list(map(int, input().split()))
+    original_arr = arr.copy()
+    print (f"\nSelect a sorting algorithm:")
+    print (f"1. Selection Sort")
+    print (f"2. Bubble Sort")
+    print (f"3. Insertion Sort")
+    print (f"4. Merge Sort")
+    print (f"5. Quick Sort")
+    print (f"6. Heap Sort")
+    print (f"7. Comb Sort")
     print("8. Compare all sorts")
     choice = int(input())
 
-    start_time = time.time()
-
     if choice == 1:
-        sorting.selection_sort(arr)
+        time_taken = timeit.timeit(lambda: sorting.selection_sort(arr), number=1)
+        print (f"\nList before sorting: {original_arr}")
+        print (f"List after sorting: {sorting.selection_sort(arr)}")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 2:
-        sorting.bubble_sort(arr)
+        time_taken = timeit.timeit(lambda: sorting.bubble_sort(arr), number=1)
+        print (f"\nList before sorting: {original_arr}")
+        print (f"List after sorting: {sorting.bubble_sort(arr)}")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 3:
-        sorting.insertion_sort(arr)
+        time_taken = timeit.timeit(lambda: sorting.insertion_sort(arr), number=1)
+        print (f"\nList before sorting: {original_arr}")
+        print (f"List after sorting: {sorting.insertion_sort(arr)}")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 4:
-        sorting.merge_sort(arr)
+        time_taken = timeit.timeit(lambda: sorting.merge_sort(arr), number=1)
+        print (f"\nList before sorting: {original_arr}")
+        print (f"List after sorting: {sorting.merge_sort(arr)}")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 5:
-        sorting.quick_sort(arr)
+        time_taken = timeit.timeit(lambda: sorting.quick_sort(arr), number=1)
+        print (f"\nList before sorting: {original_arr}")
+        print (f"List after sorting: {sorting.quick_sort(arr)}")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 6:
-        sorting.heap_sort(arr)
+        time_taken = timeit.timeit(lambda: sorting.heap_sort(arr), number=1)
+        print(f"\nListe avant le tri : {original_arr}")
+        print(f"Liste après le tri : {sorting.heap_sort(arr)}")
+        print(f"Temps écoulé : {time_taken:.10e} ms")
     elif choice == 7:
-        sorting.comb_sort(arr)
+        time_taken = timeit.timeit(lambda: sorting.comb_sort(arr), number=1)
+        print (f"\nList before sorting: {original_arr}")
+        print (f"List after sorting: {sorting.comb_sort(arr)}")
+        print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 8:  
         execution_times = {}
         for sort_func in [sorting.selection_sort, sorting.bubble_sort, sorting.insertion_sort,
@@ -46,8 +66,17 @@ def main():
             print(f"{sort_func.__name__}: Execution time - {execution_time} seconds")
         return execution_times  
     else:
-        print("Invalid choice")
-        return {}  
+        print (f"\nInvalid choice !")
+        return
+    print (f"\nThank you for using the Sorting Algorithm Visualizer !")
+    print (f"\nDo you want to continue ? (y/n)")
+    choice = input()
+    if choice == 'y' or choice == 'Y':
+        main()
+    else:
+        return
+    
+
 if __name__ == "__main__":
     execution_times = main()
     if execution_times:  
@@ -60,3 +89,4 @@ if __name__ == "__main__":
         plt.show()
     else:
         print("No data to plot.")
+
