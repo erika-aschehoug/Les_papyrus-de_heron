@@ -2,6 +2,13 @@ import sorting
 import timeit
 import matplotlib.pyplot as plt
 
+def execution_times_graph(execution_times):
+    plt.bar(execution_times.keys(), execution_times.values())
+    plt.xlabel('Sorting Algorithms')
+    plt.ylabel('Execution Time (in seconds)')
+    plt.title('Execution Times of Sorting Algorithms')
+    plt.show()
+
 def main():
 
     print (f"\nWelcome to the Sorting Algorithm Visualizer !")
@@ -58,36 +65,30 @@ def main():
         execution_times = {}
         for sort_func in [sorting.selection_sort, sorting.bubble_sort, sorting.insertion_sort,
                           sorting.merge_sort, sorting.quick_sort, sorting.heap_sort, sorting.comb_sort]:
-            start_time = time.time()
-            sort_func(arr.copy())
-            end_time = time.time()
-            execution_time = end_time - start_time
-            execution_times[sort_func.__name__] = execution_time
-            print(f"{sort_func.__name__}: Execution time - {execution_time} seconds")
-        return execution_times  
+            arr = original_arr.copy()
+            time_taken = timeit.timeit(lambda: sort_func(arr), number=1)
+            execution_times[sort_func.__name__] = time_taken
+            print(f"\nList before sorting: {original_arr}")
+            print(f"List after sorting: {arr}")
+            print(f"Time taken: {time_taken:.10e} ms")
+        execution_times_graph(execution_times)
     else:
         print (f"\nInvalid choice !")
         return
     
     print (f"\nThank you for using the Sorting Algorithm Visualizer !")
-    print (f"\nDo you want to continue ? (y/n)")
+    print (f"\nDo you want to continue sortings ? (y/n)")
     choice = input()
     if choice == 'y' or choice == 'Y':
         main()
     else:
-        return
+        print (f"\nDo you want to display graph of execution times of sorting algorithms ? (y/n)")
+        choice = input()
+        if choice == 'y' or choice == 'Y':
+            return execution_times_graph
+        else:
+            return
     
 
 if __name__ == "__main__":
-    execution_times = main()
-    if execution_times:  
-        algorithms = list(execution_times.keys())  
-        times = list(execution_times.values())
-        plt.bar(algorithms, times)
-        plt.xlabel("Sorting Algorithms")
-        plt.ylabel("Execution Time (seconds)")
-        plt.title("Comparison of Sorting Algorithms")
-        plt.show()
-    else:
-        print("No data to plot.")
-
+    main()
