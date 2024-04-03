@@ -7,7 +7,7 @@ def execution_times_graph(execution_times):
     plt.xlabel('Sorting Algorithms')
     plt.ylabel('Execution Time (in milliseconds)')
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
-    plt.title('Execution Times of Sorting Algorithms')
+    plt.title('execution time depending on different sorting algorithms')
     plt.show()
 
 def main():

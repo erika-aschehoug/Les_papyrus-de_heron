@@ -5,25 +5,35 @@ import Terminal_interface.main
 def display_window():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
-    pygame.display.set_caption("Choisissez l'interface")
+    pygame.display.set_caption("Sorting Algorithm Visualizer")
     font = pygame.font.Font(None, 36)
     clock = pygame.time.Clock()
+
+    # create buttons for the two interfaces to choose from 
+    button_g = pygame.Rect(100, 200, 400, 50)
+    button_t = pygame.Rect(100, 300, 400, 50)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_g:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # check if the mouse click is within the button
+                if button_g.collidepoint(event.pos):
                     Graphical_interface.main.main()
                     return
-                if event.key == pygame.K_t:
+                elif button_t.collidepoint(event.pos):
+                    pygame.display.iconify() # minimize the window before opening the terminal interface 
                     Terminal_interface.main.main()
                     return
+
         screen.fill((255, 255, 255))
-        text = font.render("Appuyez sur 'g' pour utiliser l'interface graphique", True, (0, 0, 0))
-        screen.blit(text, (100, 200))
-        text = font.render("Appuyez sur 't' pour utiliser l'interface en ligne de commande", True, (0, 0, 0))
-        screen.blit(text, (100, 300))
+        pygame.draw.rect(screen, (200, 200, 200), button_g)
+        pygame.draw.rect(screen, (200, 200, 200), button_t)
+        text_g = font.render("Use the GUI", True, (0, 0, 0))
+        text_t = font.render("Use the command line interface", True, (0, 0, 0))
+        screen.blit(text_g, (button_g.x + 10, button_g.y + 10))
+        screen.blit(text_t, (button_t.x + 10, button_t.y + 10))
         pygame.display.flip()
         clock.tick(60)
 
