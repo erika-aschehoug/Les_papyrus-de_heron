@@ -45,6 +45,7 @@ def main():
         order_choice = int(input(f"Enter your choice (1 or 2): "))
         ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.selection_sort(arr, ascending), number=1)
+        print (f"\nSelection_Sort")
         print(f"\nList before sorting: {original_arr}")
         print(f"List after sorting: {sorting.selection_sort(arr, ascending)}")
         print(f"Time taken: {time_taken:.10e} ms")
@@ -55,6 +56,7 @@ def main():
         order_choice = int(input(f"Enter your choice (1 or 2): "))
         ascending = order_choice == 1        
         time_taken = timeit.timeit(lambda: sorting.bubble_sort(arr), number=1)
+        print (f"\nBubble_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.bubble_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
@@ -65,6 +67,7 @@ def main():
         order_choice = int(input(f"Enter your choice (1 or 2): "))
         ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.insertion_sort(arr), number=1)
+        print (f"\nInsertion_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.insertion_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
@@ -75,6 +78,7 @@ def main():
         order_choice = int(input(f"Enter your choice (1 or 2): "))
         ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.merge_sort(arr), number=1)
+        print (f"\nMerge_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.merge_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
@@ -85,6 +89,7 @@ def main():
         order_choice = int(input(f"Enter your choice (1 or 2): "))
         ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.quick_sort(arr), number=1)
+        print (f"\nQuick_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.quick_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
@@ -95,6 +100,7 @@ def main():
         order_choice = int(input(f"Enter your choice (1 or 2): "))
         ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.heap_sort(arr), number=1)
+        print(f"\nHeap_Sort")
         print(f"\nListe avant le tri : {original_arr}")
         print(f"Liste après le tri : {sorting.heap_sort(arr)}")
         print(f"Temps écoulé : {time_taken:.10e} ms")
@@ -105,6 +111,7 @@ def main():
         order_choice = int(input(f"Enter your choice (1 or 2): "))
         ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.comb_sort(arr), number=1)
+        print (f"\nComb_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.comb_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
@@ -120,6 +127,7 @@ def main():
             arr = original_arr.copy()
             time_taken = timeit.timeit(lambda: sort_func(arr, ascending), number=1)  # Pass 'ascending' argument
             execution_times[sort_func.__name__] = time_taken
+            print(f"\n{sort_func.__name__}")
             print(f"\nList before sorting: {original_arr}")
             print(f"List after sorting: {arr}")
             print(f"Time taken: {time_taken:.10e} ms")
