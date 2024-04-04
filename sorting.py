@@ -101,7 +101,3 @@ def comb_sort(arr, ascending=True): # O(n^2) time complexity and O(1) space comp
                 arr[i], arr[i + gap] = arr[i + gap], arr[i]
                 swapped = True
     return arr
-
-
-
-
