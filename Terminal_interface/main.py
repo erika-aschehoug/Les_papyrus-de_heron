@@ -8,13 +8,13 @@ def execution_times_graph(execution_times, arr, original_arr):
     plt.ylabel('Execution Time (in milliseconds)')
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
     plt.title('execution time depending on different sorting algorithms')
-    plt.text(0.5, 1.08, f'List before sorting : {original_arr}', transform=plt.gca().transAxes, ha='center')
-    plt.text(0.5, 1.05, f'List after sorting : {arr}', transform=plt.gca().transAxes, ha='center')
-    plt.text(0.5, 1.11, f'List length : {len(arr)}', transform=plt.gca().transAxes, ha='center')
+    plt.text(0.5, 1.08, f'List before sorting: {original_arr}', transform=plt.gca().transAxes, ha='center')
+    plt.text(0.5, 1.05, f'List after sorting: {arr}', transform=plt.gca().transAxes, ha='center')
+    plt.text(0.5, 1.11, f'List length: {len(arr)}', transform=plt.gca().transAxes, ha='center')
     plt.show()
 
 def main():
-    print (f"\nWelcome to the Sorting Algorithm command line interface !")
+    print (f"\nWelcome to the Sorting Algorithm command line interface!")
     print (f"\nEnter a list of real numbers separated by space:")
     arr = list(map(int, input().split()))
     original_arr = arr.copy()
@@ -56,9 +56,9 @@ def main():
         print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 6:
         time_taken = timeit.timeit(lambda: sorting.heap_sort(arr), number=1)
-        print(f"\nListe avant le tri : {original_arr}")
-        print(f"Liste après le tri : {sorting.heap_sort(arr)}")
-        print(f"Temps écoulé : {time_taken:.10e} ms")
+        print(f"\nList before sorting: {original_arr}")
+        print(f"List after sorting: {sorting.heap_sort(arr)}")
+        print(f"Time taken: {time_taken:.10e} ms")
     elif choice == 7:
         time_taken = timeit.timeit(lambda: sorting.comb_sort(arr), number=1)
         print (f"\nList before sorting: {original_arr}")
@@ -76,14 +76,14 @@ def main():
             print(f"Time taken: {time_taken:.10e} ms")
         execution_times_graph(execution_times, arr, original_arr)
     else:
-        print (f"\nInvalid choice !")
+        print (f"\nInvalid choice!")
         return
-    print (f"\nDo you want to continue sortings ? (y/n)")
+    print (f"\nDo you want to continue sortings? (y/n)")
     choice = input()
     if choice == 'y' or choice == 'Y':
         main()
     else:
-        print (f"\nThank you for using the Sorting Algorithm command line interface !\n")
+        print (f"\nThank you for using the Sorting Algorithm command line interface!\n")
         return
     
 
