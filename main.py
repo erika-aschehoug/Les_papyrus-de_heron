@@ -16,16 +16,18 @@ def display_window():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                pygame.quit()
+                return False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # check if the mouse click is within the button
                 if button_g.collidepoint(event.pos):
                     Graphical_interface.main.main()
                     return
                 elif button_t.collidepoint(event.pos):
-                    pygame.display.iconify() # minimize the window before opening the terminal interface 
-                    Terminal_interface.main.main()
-                    return
+                    pygame.quit() # close the pygame window before opening the terminal interface 
+                    result = Terminal_interface.main.main()
+                    if result is False:
+                        return
 
         screen.fill((255, 255, 255))
         pygame.draw.rect(screen, (200, 200, 200), button_g)
@@ -38,7 +40,10 @@ def display_window():
         clock.tick(60)
 
 def main():
-    display_window()
+    while True:
+        result = display_window()
+        if result is False:
+            return
 
 if __name__ == "__main__":
     main()

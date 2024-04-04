@@ -169,8 +169,7 @@ def main():
         main()
     else:
         print (f"\nThank you for using the Sorting Algorithm Visualizer !\n")
-        return
-    
+        return False
 
 if __name__ == "__main__":
-    main()
+   main()
