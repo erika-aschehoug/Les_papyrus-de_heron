@@ -23,7 +23,7 @@ def execution_times_graph(execution_times, arr, original_arr):
     plt.show()
 
 def main():
-    print (f"\nWelcome to the Sorting Algorithm command line interface!")
+    print (f"\nWelcome to the Sorting Algorithm Visualizer !")
     print (f"\nEnter a list of real numbers separated by space:")
     arr = list(map(int, input().split()))
     original_arr = arr.copy()
@@ -36,76 +36,105 @@ def main():
     print (f"6. Heap Sort")
     print (f"7. Comb Sort")
     print(f"8. Compare all sorts")
-    choice = int(input())
+    choice = int(input(f"Enter your choice (1-8): "))
 
     if choice == 1:
-        time_taken = timeit.timeit(lambda: sorting.selection_sort(arr), number=1)
-        print (f"\nSelection_Sort")
-        print (f"\nList before sorting: {original_arr}")
-        print (f"List after sorting: {sorting.selection_sort(arr)}")
-        print (f"Time taken: {time_taken:.10e} ms")
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1
+        time_taken = timeit.timeit(lambda: sorting.selection_sort(arr, ascending), number=1)
+        print(f"\nList before sorting: {original_arr}")
+        print(f"List after sorting: {sorting.selection_sort(arr, ascending)}")
+        print(f"Time taken: {time_taken:.10e} ms")
     elif choice == 2:
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1        
         time_taken = timeit.timeit(lambda: sorting.bubble_sort(arr), number=1)
-        print (f"\nBubble_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.bubble_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 3:
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.insertion_sort(arr), number=1)
-        print (f"\nInsertion_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.insertion_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 4:
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.merge_sort(arr), number=1)
-        print (f"\nMerge_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.merge_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 5:
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.quick_sort(arr), number=1)
-        print (f"\nQuick_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.quick_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
     elif choice == 6:
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.heap_sort(arr), number=1)
-        print(f"\nHeap_Sort")
-        print(f"\nList before sorting: {original_arr}")
-        print(f"List after sorting: {sorting.heap_sort(arr)}")
-        print(f"Time taken: {time_taken:.10e} ms")
+        print(f"\nListe avant le tri : {original_arr}")
+        print(f"Liste après le tri : {sorting.heap_sort(arr)}")
+        print(f"Temps écoulé : {time_taken:.10e} ms")
     elif choice == 7:
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1
         time_taken = timeit.timeit(lambda: sorting.comb_sort(arr), number=1)
-        print (f"\nComb_Sort")
         print (f"\nList before sorting: {original_arr}")
         print (f"List after sorting: {sorting.comb_sort(arr)}")
         print (f"Time taken: {time_taken:.10e} ms")
-    elif choice == 8:  
+    elif choice == 8:
+        print("\nChoose sorting order:")
+        print("1. Ascending")
+        print("2. Descending")
+        order_choice = int(input(f"Enter your choice (1 or 2): "))
+        ascending = order_choice == 1
         execution_times = {}
         for sort_func in [sorting.selection_sort, sorting.bubble_sort, sorting.insertion_sort,
-                          sorting.merge_sort, sorting.quick_sort, sorting.heap_sort, sorting.comb_sort]:
+                        sorting.merge_sort, sorting.quick_sort, sorting.heap_sort, sorting.comb_sort]:
             arr = original_arr.copy()
-            time_taken = timeit.timeit(lambda: sort_func(arr), number=1)
+            time_taken = timeit.timeit(lambda: sort_func(arr, ascending), number=1)  # Pass 'ascending' argument
             execution_times[sort_func.__name__] = time_taken
-            print(f"\n{sort_func.__name__}")
             print(f"\nList before sorting: {original_arr}")
             print(f"List after sorting: {arr}")
             print(f"Time taken: {time_taken:.10e} ms")
-        execution_times_graph(execution_times, arr, original_arr)
+        execution_times_graph(execution_times)
     else:
-        print (f"\nInvalid choice!")
+        print (f"\nInvalid choice !")
         return
-    print (f"\nDo you want to continue sortings? (y/n)")
+    print (f"\nDo you want to continue sortings ? (y/n)")
     choice = input()
     if choice == 'y' or choice == 'Y':
         main()
     else:
-        print (f"\nThank you for using the Sorting Algorithm command line interface!\n")
+        print (f"\nThank you for using the Sorting Algorithm Visualizer !\n")
         return
     
-
-if __name__ == "__main__":
-    main()
 
 if __name__ == "__main__":
     main()
