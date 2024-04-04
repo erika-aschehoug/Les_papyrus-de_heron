@@ -11,6 +11,15 @@ def execution_times_graph(execution_times, arr, original_arr):
     plt.text(0.5, 1.08, f'List before sorting: {original_arr}', transform=plt.gca().transAxes, ha='center')
     plt.text(0.5, 1.05, f'List after sorting: {arr}', transform=plt.gca().transAxes, ha='center')
     plt.text(0.5, 1.11, f'List length: {len(arr)}', transform=plt.gca().transAxes, ha='center')
+    algorithm_names = {
+    sorting.selection_sort.__name__: 'Selection',
+    sorting.bubble_sort.__name__: 'Bubble',
+    sorting.insertion_sort.__name__: 'Insertion',
+    sorting.merge_sort.__name__: 'Merge',
+    sorting.quick_sort.__name__: 'Quick',
+    sorting.heap_sort.__name__: 'Heap',
+    sorting.comb_sort.__name__: 'Comb'}
+    plt.xticks(list(algorithm_names.keys()), list(algorithm_names.values()))
     plt.show()
 
 def main():
@@ -26,7 +35,7 @@ def main():
     print (f"5. Quick Sort")
     print (f"6. Heap Sort")
     print (f"7. Comb Sort")
-    print("8. Compare all sorts")
+    print(f"8. Compare all sorts")
     choice = int(input())
 
     if choice == 1:
