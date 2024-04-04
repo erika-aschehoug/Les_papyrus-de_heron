@@ -62,8 +62,9 @@ def quick_sort(arr, ascending=True): # O(nlogn) time complexity and O(logn) spac
     pivot = arr[len(arr) // 2]
     left = [x for x in arr if (ascending and x < pivot) or (not ascending and x > pivot)]
     middle = [x for x in arr if x == pivot]
-    right = [x for x in arr if (ascending and x > pivot) or (not ascending and x < pivot)]
+    right = [x for x in arr if (ascending and x > pivot) or (not ascending and x < pivot)] 
     return quick_sort(left, ascending) + middle + quick_sort(right, ascending)
+
 
 def heap_sort(arr, ascending=True): # O(nlogn) time complexity and O(1) space complexity
     def heapify(arr, n, i):
