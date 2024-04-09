@@ -22,12 +22,18 @@ def execution_times_graph(execution_times, sorted_arr, original_arr, num_runs):
     plt.xticks(list(algorithm_names.keys()), list(algorithm_names.values()))
     plt.show()
 
-
 def main():
     print (f"\nWelcome to the Sorting Algorithm Visualizer !")
-    print (f"\nEnter a list of real numbers separated by space:")
-    arr = list(map(int, input().split()))
-    original_arr = arr.copy()
+    while True:
+        try:
+            print (f"\nEnter a list of real numbers separated by space:")
+            arr = list(map(int, input().split()))
+            if not arr:
+                raise ValueError("\nInvalid input: List cannot be empty.")
+            original_arr = arr.copy()
+            break
+        except ValueError as e:
+            print(f"\nInvalid input: {e}. Please enter a list of real numbers separated by space.")
     print (f"\nSelect a sorting algorithm:")
     print (f"1. Selection Sort")
     print (f"2. Bubble Sort")
