@@ -1,6 +1,6 @@
 import pygame
-import Graphical_interface.main
-import Terminal_interface.main
+import Graphical_interface.graphical_interface
+import Terminal_interface.terminal_interface
 
 def display_window():
     pygame.init()
@@ -37,7 +37,7 @@ def display_window():
                     return 
                 elif button_t.collidepoint(event.pos): # check if the mouse is over the button
                     pygame.quit() # close the pygame window before opening the terminal interface 
-                    result = Terminal_interface.main.main() # open the terminal interface
+                    result = Terminal_interface.terminal_interface.main() # open the terminal interface
                     if result is False: 
                         return 
 
@@ -61,10 +61,10 @@ def display_window():
         clock.tick(60)
 
 def main():
-    while True:
-        result = display_window()
-        if result is False:
-            return
+    while True: # loop to allow the user to choose the interface he wants to use
+        result = display_window() # display the window with the buttons
+        if result is False: 
+            return 
 
 if __name__ == "__main__":
     main()

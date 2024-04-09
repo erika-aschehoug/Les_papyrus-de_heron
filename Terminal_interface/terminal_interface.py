@@ -167,8 +167,8 @@ def main():
             print(f"Average time taken over {num_runs} runs: {average_time:.10e} ms")
         execution_times_graph(execution_times, sorted_arr, original_arr, num_runs)
     else:
-        print (f"\nInvalid choice !")
-        return
+        print (f"\nInvalid choice please start again !")
+        return main()
     print (f"\nDo you want to continue sortings ? (y/n)")
     choice = input()
     if choice == 'y' or choice == 'Y':
