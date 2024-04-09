@@ -11,6 +11,7 @@ def execution_times_graph(execution_times, sorted_arr, original_arr, num_runs):
     plt.text(0.5, 1.08, f'List before sorting: {original_arr}', transform=plt.gca().transAxes, ha='center')
     plt.text(0.5, 1.05, f'List after sorting: {sorted_arr}', transform=plt.gca().transAxes, ha='center')
     plt.text(0.5, 1.11, f'List length: {len(sorted_arr)}', transform=plt.gca().transAxes, ha='center')
+    plt.text(0.5, 1.14, f'Sorting oder: {"Ascending" if sorted_arr == sorted(sorted_arr) else "Descending"}', transform=plt.gca().transAxes, ha='center')
     algorithm_names = {
     sorting.selection_sort.__name__: 'Selection',
     sorting.bubble_sort.__name__: 'Bubble',
