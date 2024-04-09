@@ -29,7 +29,7 @@ def main():
             print (f"\nEnter a list of real numbers separated by space:")
             arr = list(map(int, input().split()))
             if not arr:
-                raise ValueError("\nInvalid input: List cannot be empty.")
+                raise ValueError("List cannot be empty.")
             original_arr = arr.copy()
             break
         except ValueError as e:
