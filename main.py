@@ -33,7 +33,7 @@ def display_window():
                 return False
             if event.type == pygame.MOUSEBUTTONDOWN: # check if the mouse has been clicked
                 if button_g.collidepoint(event.pos): # check if the mouse is over the button
-                    Graphical_interface.main.main() # open the graphical interface
+                    Graphical_interface.graphical_interface.main() # open the graphical interface
                     return 
                 elif button_t.collidepoint(event.pos): # check if the mouse is over the button
                     pygame.quit() # close the pygame window before opening the terminal interface 
