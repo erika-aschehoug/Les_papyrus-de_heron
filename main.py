@@ -10,8 +10,18 @@ def display_window():
     clock = pygame.time.Clock()
 
     # create buttons for the two interfaces to choose from 
-    button_g = pygame.Rect(100, 200, 400, 50)
-    button_t = pygame.Rect(100, 300, 400, 50)
+    button_g = pygame.Rect(50, 500, 155, 50)
+    button_t = pygame.Rect(250, 500, 400, 50)
+
+    # load and display the background image
+    background = pygame.image.load("pictures\sortings_ia_illustration.jpg")
+    background = pygame.transform.scale(background, (800, 600))
+
+    # add text to the image
+    text = font.render("Choose the interface you want to use:", True, (0, 0, 0))
+
+    # Create a rect for the text background
+    text_background = pygame.Rect(40, 465, 460, 30)
 
     while True:
         for event in pygame.event.get():
@@ -30,12 +40,15 @@ def display_window():
                         return
 
         screen.fill((255, 255, 255))
+        screen.blit(background, (0, 0))
+        pygame.draw.rect(screen, (200, 200, 200), text_background)
         pygame.draw.rect(screen, (200, 200, 200), button_g)
         pygame.draw.rect(screen, (200, 200, 200), button_t)
         text_g = font.render("Use the GUI", True, (0, 0, 0))
         text_t = font.render("Use the command line interface", True, (0, 0, 0))
         screen.blit(text_g, (button_g.x + 10, button_g.y + 10))
         screen.blit(text_t, (button_t.x + 10, button_t.y + 10))
+        screen.blit(text, (50, 470))
         pygame.display.flip()
         clock.tick(60)
 
