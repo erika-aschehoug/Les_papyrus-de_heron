@@ -49,6 +49,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()
         ascending = order_choice == 1
         start_time = timeit.default_timer()
         sorted_arr = sorting.selection_sort(arr, ascending)
@@ -63,6 +66,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()      
         ascending = order_choice == 1
         start_time = timeit.default_timer()
         sorted_arr = sorting.bubble_sort(arr, ascending)
@@ -77,6 +83,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()
         ascending = order_choice == 1
         start_time = timeit.default_timer()
         sorted_arr = sorting.insertion_sort(arr, ascending)
@@ -91,6 +100,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()
         ascending = order_choice == 1
         start_time = timeit.default_timer()
         sorted_arr = sorting.merge_sort(arr, ascending)
@@ -105,6 +117,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()
         ascending = order_choice == 1
         start_time = timeit.default_timer()
         sorted_arr = sorting.quick_sort(arr, ascending)
@@ -119,6 +134,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()
         ascending = order_choice == 1
         start_time = timeit.default_timer()
         sorted_arr = sorting.heap_sort(arr, ascending)
@@ -133,6 +151,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()
         ascending = order_choice == 1
         start_time = timeit.default_timer()
         sorted_arr = sorting.comb_sort(arr, ascending)
@@ -147,6 +168,9 @@ def main():
         print("1. Ascending")
         print("2. Descending")
         order_choice = int(input(f"Enter your choice (1 or 2): "))
+        if order_choice != 1 and order_choice != 2:
+            print(f"\nInvalid choice please start again !")
+            return main()
         num_runs = int(input(f"Enter the number of runs to calculate average execution time: "))
         ascending = order_choice == 1
         execution_times = {}
