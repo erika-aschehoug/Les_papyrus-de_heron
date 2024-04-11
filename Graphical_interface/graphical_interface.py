@@ -13,12 +13,12 @@ def pygame_init():
     return screen, clock, font
 
 # create text zone to add number list separated by space
-def create_text_zone(screen, font):
-    text = ''
+def create_text_zone(screen, font, text='', default_text='Please insert a list of integers separated by spaces'):
+    display_text = default_text if text == '' else text
     text_zone = pygame.Rect(50, 10, 700, 50)
     pygame.draw.rect(screen, (255, 255, 255), text_zone)
     pygame.draw.rect(screen, (0, 0, 0), text_zone, 2)
-    text_surface = font.render(text, True, (0, 0, 0))
+    text_surface = font.render(display_text, True, (0, 0, 0))
     screen.blit(text_surface, (text_zone.x + 10, text_zone.y + 10))
     return text_zone, text
 
@@ -86,6 +86,10 @@ def display_results(screen, font, result_zone, original_arr, sorted_arr, time_ta
     text_surface = font.render(f"Original list: {original_arr}", True, (0, 0, 0))
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 10))
     text_surface = font.render(f"Sorted list: {sorted_arr}", True, (0, 0, 0))
+    screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 30))
+    text_surface = font.render(f"Sorting order: {'Ascending' if sorted_arr == sorted(sorted_arr) else 'Descending'}", True, (0, 0, 0))  # Determine the sorting order by comparing the sorted list with the sorted sorted list
+    screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 70))
+    text_surface = font.render(f"List length: {len(original_arr)}", True, (0, 0, 0) )
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 50))
     text_surface = font.render(f"Time taken: {time_taken:.10e} ms", True, (0, 0, 0))
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 90))
@@ -188,11 +192,18 @@ def main():
                     time_taken = (end_time - start_time) * 1000
                     display_results(screen, font, result_zone, original_arr, sorted_arr, time_taken)
                 if compare_button.collidepoint(event.pos):  # If the compare button is clicked
+                    pygame.draw.rect(screen, (255, 255, 255), result_zone)  # Clear the result zone
+                    pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
                     compare_algorithms(screen, font, result_zone, arr, ascending)  # Compare all algorithms
+                    # Don't clear the text after pressing compare all sort
+                    # text = ''  # Comment this line
+                    text_surface = font.render(text, True, (0, 0, 0))
+                    screen.blit(text_surface, (text_zone.x + 10, text_zone.y + 10))
                 if clear_button.collidepoint(event.pos):  # Added clear event
                     arr = []
                     original_arr = []
                     sorted_arr = []
+                    text_zone, text = create_text_zone(screen, font, text, 'Please insert a list of integers separated by spaces')
                     text = ''
                     pygame.draw.rect(screen, (255, 255, 255), text_zone)
                     pygame.draw.rect(screen, (0, 0, 0), text_zone, 2)
@@ -206,13 +217,13 @@ def main():
                 if event.key == pygame.K_BACKSPACE:
                     text = text[:-1]
                 else:
-                    text += event.unicode
-                text_surface = font.render(text, True, (0, 0, 0))
-                screen.blit(text_surface, (text_zone.x + 10, text_zone.y + 10))
+                    if event.key != pygame.K_RETURN:  # Don't add the return character to the text
+                        text += event.unicode
                 if event.key == pygame.K_RETURN:
                     arr = list(map(int, text.split()))
                     original_arr = copy_list(arr)
-                    text = ''
+                    # text = ''  # Comment this line
+                text_zone, text = create_text_zone(screen, font, text)  # Update the text zone display
         pygame.display.flip()
         clock.tick(60)
 
