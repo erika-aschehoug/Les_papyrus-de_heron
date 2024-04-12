@@ -1,6 +1,8 @@
 import pygame
 import sorting
 import timeit
+import random
+
 
 # initialize the pygame module
 def pygame_init():
@@ -14,7 +16,7 @@ def pygame_init():
 
 # create text zone to add number list separated by space
 def create_text_zone(screen, font, text='', default_text='Please insert a list of integers separated by spaces'):
-    display_text = default_text if text == '' else text
+    display_text = default_text if text == '' else 'text'
     text_zone = pygame.Rect(50, 10, 700, 50)
     pygame.draw.rect(screen, (255, 255, 255), text_zone)
     pygame.draw.rect(screen, (0, 0, 0), text_zone, 2)
@@ -42,7 +44,7 @@ def create_order_list(screen, font, selected=None):
     order_rects = []
     smaller_font = pygame.font.SysFont("comicsans", 10)  # Reduced font size
     for i, order_name in enumerate(order_list):
-        rect = pygame.Rect(50 + 100 * i, 150, 100, 25)  # Adjusted x-coordinate for side-by-side placement
+        rect = pygame.Rect(50 + 100 * i, 180, 100, 25)  # Adjusted x-coordinate for side-by-side placement
         order_rects.append(rect)
         color = (255, 0, 0) if i == selected else (255, 255, 255)
         pygame.draw.rect(screen, color, rect)
@@ -51,6 +53,13 @@ def create_order_list(screen, font, selected=None):
         text_rect = text_surface.get_rect(center=rect.center)  # Get the rectangle of the text surface and set its center to the center of the button
         screen.blit(text_surface, text_rect)  # Blit the text surface at the position of the text rectangle
     return order_rects
+
+# function to truncate list if its length is greater than 9
+def truncate_list(arr):
+    if len(arr) > 9:
+        return arr[:4] + ['...'] + arr[-4:]
+    else:
+        return arr
 
 # create button to launch the sorting algorithm
 def create_sort_button(screen, font, selected=False):
@@ -83,16 +92,42 @@ def create_return_button(screen, font, selected=False):
 def display_results(screen, font, result_zone, original_arr, sorted_arr, time_taken):
     pygame.draw.rect(screen, (255, 255, 255), result_zone)
     pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
-    text_surface = font.render(f"Original list: {original_arr}", True, (0, 0, 0))
+    smaller_font = pygame.font.SysFont("comicsans", font.get_height() // 2)  # Reduced font size
+    text_surface = smaller_font.render(f"Original list: {truncate_list(original_arr)}", True, (0, 0, 0))
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 10))
-    text_surface = font.render(f"Sorted list: {sorted_arr}", True, (0, 0, 0))
+    text_surface = smaller_font.render(f"Sorted list: {truncate_list(sorted_arr)}", True, (0, 0, 0))
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 30))
-    text_surface = font.render(f"Sorting order: {'Ascending' if sorted_arr == sorted(sorted_arr) else 'Descending'}", True, (0, 0, 0))  # Determine the sorting order by comparing the sorted list with the sorted sorted list
+    text_surface = smaller_font.render(f"Sorting order: {'Ascending' if sorted_arr == sorted(sorted_arr) else 'Descending'}", True, (0, 0, 0))  # Determine the sorting order by comparing the sorted list with the sorted sorted list
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 70))
-    text_surface = font.render(f"List length: {len(original_arr)}", True, (0, 0, 0) )
+    text_surface = smaller_font.render(f"List length: {len(original_arr)}", True, (0, 0, 0) )
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 50))
-    text_surface = font.render(f"Time taken: {time_taken:.10e} ms", True, (0, 0, 0))
+    text_surface = smaller_font.render(f"Time taken: {time_taken:.10e} ms", True, (0, 0, 0))
     screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 90))
+
+# generate a random list of integers
+def generate_random_list(length):
+    return [random.randint(-1000, 1000) for _ in range(length)]
+
+# create button to generate a random list
+def create_generate_button(screen, font, selected=False):
+    smaller_font = pygame.font.SysFont("comicsans", int(font.get_height() // 1.5))  # Reduced font size
+    generate_button = pygame.Rect(50, 100, 200, 50)  # Ajustez la position et la taille selon vos besoins
+    color = (255, 0, 0) if selected else (255, 255, 255)
+    pygame.draw.rect(screen, color, generate_button)
+    pygame.draw.rect(screen, (0, 0, 0), generate_button, 2)
+    text_surface = smaller_font.render("Generate Random List", True, (0, 0, 0))
+    screen.blit(text_surface, (generate_button.x + 10, generate_button.y + 10))
+    return generate_button
+
+# create input to enter the length of the list to generate
+def create_length_input(screen, font, text='', default_text='List lenght'):
+    display_text = default_text if text == '' else text
+    length_input = pygame.Rect(50, 59, 120, 40)  # Ajustez la position et la taille selon vos besoins
+    pygame.draw.rect(screen, (255, 255, 255), length_input)
+    pygame.draw.rect(screen, (0, 0, 0), length_input, 2)
+    text_surface = font.render(display_text, True, (0, 0, 0))
+    screen.blit(text_surface, (length_input.x + 10, length_input.y + 10))
+    return length_input, text
 
 # copy the original list to avoid modifying it
 def copy_list(arr):
@@ -148,18 +183,40 @@ def main():
     compare_button = create_compare_button(screen, font)  # Create the compare button
     result_zone = create_result_zone(screen, font)
     return_button = create_return_button(screen, font)
-    order_rects = create_order_list(screen, font)
+    sorting_order = 1
+    order_rects = create_order_list(screen, font, selected=sorting_order)
+    generate_button = create_generate_button(screen, font)
+    lenght_input, lenght_text = create_length_input(screen, font)
+    default_text = 'Please insert a list of integers separated by spaces' 
+    text_zone, text = create_text_zone(screen, font, text)
     arr = []
     original_arr = []
     sorted_arr = []
     sorting_algorithm = None
-    sorting_order = None
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 return False
             if event.type == pygame.MOUSEBUTTONDOWN:
+                if generate_button.collidepoint(event.pos):
+                    if lenght_text == '':
+                        # Display a message in the result zone asking the user to insert a list length
+                        pygame.draw.rect(screen, (255, 255, 255), result_zone)
+                        pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
+                        text_surface = font.render("Please insert a list length", True, (0, 0, 0))
+                        screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 10))
+                    else:
+                        lenght = int(lenght_text)
+                        arr = generate_random_list(lenght)
+                        original_arr = copy_list(arr)
+                        text = ' '.join(map(str, arr))
+                        pygame.draw.rect(screen, (255, 255, 255), text_zone)
+                        pygame.draw.rect(screen, (0, 0, 0), text_zone, 2)
+                        text_surface = font.render(text, True, (0, 0, 0))
+                        screen.blit(text_surface, (text_zone.x + 10, text_zone.y + 10))
+                        pygame.draw.rect(screen, (255, 255, 255), result_zone)
+                        pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
                 if text_zone.collidepoint(event.pos):
                     text = ''
                 for i, rect in enumerate(sorting_rects):
@@ -195,35 +252,42 @@ def main():
                     pygame.draw.rect(screen, (255, 255, 255), result_zone)  # Clear the result zone
                     pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
                     compare_algorithms(screen, font, result_zone, arr, ascending)  # Compare all algorithms
-                    # Don't clear the text after pressing compare all sort
-                    # text = ''  # Comment this line
                     text_surface = font.render(text, True, (0, 0, 0))
                     screen.blit(text_surface, (text_zone.x + 10, text_zone.y + 10))
+                if return_button.collidepoint(event.pos):
+                    return True
                 if clear_button.collidepoint(event.pos):  # Added clear event
                     arr = []
                     original_arr = []
                     sorted_arr = []
-                    text_zone, text = create_text_zone(screen, font, text, 'Please insert a list of integers separated by spaces')
-                    text = ''
+                    text = default_text
+                    lenght_text = ''
+                    text_zone, text = create_text_zone(screen, font, text)
+                    lenght_input, lenght_text = create_length_input(screen, font, lenght_text)
                     pygame.draw.rect(screen, (255, 255, 255), text_zone)
                     pygame.draw.rect(screen, (0, 0, 0), text_zone, 2)
                     text_surface = font.render(text, True, (0, 0, 0))
                     screen.blit(text_surface, (text_zone.x + 10, text_zone.y + 10))
                     pygame.draw.rect(screen, (255, 255, 255), result_zone)  # Clear the result zone
                     pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
-                if return_button.collidepoint(event.pos):
-                    return
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_BACKSPACE:
-                    text = text[:-1]
-                else:
-                    if event.key != pygame.K_RETURN:  # Don't add the return character to the text
-                        text += event.unicode
-                if event.key == pygame.K_RETURN:
-                    arr = list(map(int, text.split()))
-                    original_arr = copy_list(arr)
-                    # text = ''  # Comment this line
-                text_zone, text = create_text_zone(screen, font, text)  # Update the text zone display
+                if lenght_input.collidepoint(pygame.mouse.get_pos()):
+                    if event.key == pygame.K_BACKSPACE:
+                        lenght_text = lenght_text[:-1]
+                    else:
+                        if event.key != pygame.K_RETURN:  # Don't add the return character to the text
+                            lenght_text += event.unicode
+                        lenght_input, lenght_text = create_length_input(screen, font, lenght_text)  # Update the text zone display
+                elif text_zone.collidepoint(pygame.mouse.get_pos()):
+                    if event.key == pygame.K_BACKSPACE:
+                        text = text[:-1]
+                    else:
+                        if event.key != pygame.K_RETURN:
+                            text += event.unicode
+                        else:
+                            arr = list(map(int, text.split()))
+                            original_arr = copy_list(arr)
+                        text_zone, text = create_text_zone(screen, font, text)  # Update the text zone display
         pygame.display.flip()
         clock.tick(60)
 
