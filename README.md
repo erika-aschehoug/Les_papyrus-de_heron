@@ -368,6 +368,8 @@ However, like bubble sort, it is not a stable sort, which means it does not main
 
 ## Algorithm Comparison
 
+![comparisons](pictures/comparisons.png)
+
 1. `Selection Sort`: This is an in-place comparison-based sorting algorithm. It has an average and worst-case performance of O(n2)
 , so it is less efficient on large lists, and generally performs worse than the similar insertion sort.
 
