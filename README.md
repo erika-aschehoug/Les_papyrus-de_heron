@@ -366,6 +366,38 @@ The time complexity of this algorithm is `O(n2)`
 
 However, like bubble sort, it is not a stable sort, which means it does not maintain the relative order of equal sort elements.
 
+## Algorithm Comparison
+
+1. `Selection Sort`: This is an in-place comparison-based sorting algorithm. It has an average and worst-case performance of O(n2)
+, so it is less efficient on large lists, and generally performs worse than the similar insertion sort.
+
+
+2. `Bubble Sort`: This is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. The average and worst-case performance is O(n2)
+, so it is not suitable for large unsorted lists.
+
+
+3. `Insertion Sort`: This is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort. However, insertion sort provides several advantages: simple implementation, efficient for (quite) small data sets, adaptive, stable, and in-place.
+
+
+4. `Merge Sort`: This is an efficient, stable, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the order of equal elements is the same in the input and output. Merge sort is a divide and conquer algorithm that was invented by John von Neumann in 1945. It has an average and worst-case performance of O(nlogn)
+.
+
+
+5. `Quick Sort`: This is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order. When implemented well, it can be about two or three times faster than its main competitors, merge sort and heapsort. It has an average performance of O(nlogn)
+ but a worst-case performance of O(n2)
+.
+
+
+6. `Heap Sort`: This is a comparison-based sorting algorithm. Heapsort can be thought of as an improved selection sort: like selection sort, heapsort divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region. It has an average and worst-case performance of O(nlogn)
+.
+
+
+7. `Comb Sort`: This is a relatively simple sorting algorithm originally designed to improve upon bubble sort. It improves on bubble sort by using a gap of size more than 1. The gap starts with a large value and shrinks by a factor of 1.3 in every iteration until it reaches the value 1. The average performance of this algorithm is O(n2)
+.
+
+
+Each of these algorithms has its own strengths and weaknesses, and the best choice of algorithm can depend on the details of the specific task at hand. For example, if you know you’re dealing with small lists, bubble sort or insertion sort could be sufficient, but for larger lists or for lists where speed is a concern, you might want to go with something like quicksort or mergesort. If you need a stable sort (i.e., a sort that maintains the relative order of equal sort items), then merge sort would be a good choice. If you need to sort in-place (i.e., using only a small, constant amount of extra storage space), then heapsort could be the best option.
+
 ## Installation
 You'll need Python along with matplotlib and pygame libraries.
 
