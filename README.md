@@ -25,6 +25,7 @@ def selection_sort(arr, ascending=True):
 ```
 
 ![selection_sort](pictures/selection_sort.png)
+
 The function `selection_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -62,6 +63,7 @@ def bubble_sort(arr, ascending=True):
     return arr
 ```
 ![bubble_sort](pictures/bubble_sort.png)
+
 The function `bubble_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -103,6 +105,7 @@ def insertion_sort(arr, ascending=True):
     return arr
 ```
 ![insertion_sort](pictures/insertion_sort.png)
+
 The function `insertion_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -169,6 +172,7 @@ def merge_sort(arr, ascending=True):
     return arr
 ```
 ![merge_sort](pictures/merge_sort.jpg)
+
 The function `merge_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -216,6 +220,7 @@ def quick_sort(arr, ascending=True):
 
 ```
 ![quick_sort](pictures/quick_sort.jpg)
+
 The function `quick_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -274,6 +279,7 @@ def heap_sort(arr, ascending=True):
     return arr
 ```
 ![heap_sort](pictures/heap_sort.png)
+
 The function `heap_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -325,6 +331,7 @@ def comb_sort(arr, ascending=True):
     return arr
 ```
 ![comb_sort](pictures/comb_sort.png)
+
 The function `comb_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
