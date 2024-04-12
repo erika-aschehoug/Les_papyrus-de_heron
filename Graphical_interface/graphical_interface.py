@@ -15,14 +15,14 @@ def pygame_init():
     return screen, clock, font
 
 # create text zone to add number list separated by space
-def create_text_zone(screen, font, text='', default_text='Please insert a list of integers separated by spaces'):
-    display_text = default_text if text == '' else 'text'
+def create_text_zone(screen, font, text='', default_text='Please insert a list of integers separated by spaces and press enter'):
+    display_text = default_text if text == '' else text
     text_zone = pygame.Rect(50, 10, 700, 50)
     pygame.draw.rect(screen, (255, 255, 255), text_zone)
     pygame.draw.rect(screen, (0, 0, 0), text_zone, 2)
     text_surface = font.render(display_text, True, (0, 0, 0))
     screen.blit(text_surface, (text_zone.x + 10, text_zone.y + 10))
-    return text_zone, text
+    return text_zone, text, default_text
 
 # create list to choose sorting algorithm
 def create_sorting_list(screen, font, selected=None):
@@ -44,7 +44,7 @@ def create_order_list(screen, font, selected=None):
     order_rects = []
     smaller_font = pygame.font.SysFont("comicsans", 10)  # Reduced font size
     for i, order_name in enumerate(order_list):
-        rect = pygame.Rect(50 + 100 * i, 180, 100, 25)  # Adjusted x-coordinate for side-by-side placement
+        rect = pygame.Rect(50 + 100 * i, 175, 100, 25)  # Adjusted x-coordinate for side-by-side placement
         order_rects.append(rect)
         color = (255, 0, 0) if i == selected else (255, 255, 255)
         pygame.draw.rect(screen, color, rect)
@@ -176,7 +176,7 @@ def compare_algorithms(screen, font, result_zone, arr, ascending):
 def main():
     ascending = True
     screen, clock, font = pygame_init()
-    text_zone, text = create_text_zone(screen, font)
+    text_zone, text, default_text = create_text_zone(screen, font)
     sorting_rects = create_sorting_list(screen, font)
     sort_button = create_sort_button(screen, font)
     clear_button = create_clear_button(screen, font)  # Added clear button
@@ -187,8 +187,7 @@ def main():
     order_rects = create_order_list(screen, font, selected=sorting_order)
     generate_button = create_generate_button(screen, font)
     lenght_input, lenght_text = create_length_input(screen, font)
-    default_text = 'Please insert a list of integers separated by spaces' 
-    text_zone, text = create_text_zone(screen, font, text)
+    text_zone, text, default_text = create_text_zone(screen, font, text)
     arr = []
     original_arr = []
     sorted_arr = []
@@ -218,7 +217,8 @@ def main():
                         pygame.draw.rect(screen, (255, 255, 255), result_zone)
                         pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
                 if text_zone.collidepoint(event.pos):
-                    text = ''
+                    if text == default_text:
+                        text = ''
                 for i, rect in enumerate(sorting_rects):
                     if rect.collidepoint(event.pos):
                         sorting_algorithm = i
@@ -228,26 +228,33 @@ def main():
                         sorting_order = i
                         order_rects = create_order_list(screen, font, selected=i)
                 if sort_button.collidepoint(event.pos) and sorting_algorithm is not None:
-                    ascending = (sorting_order == 0)
-                    if sorting_algorithm == 0:
-                        sorting_algorithm = sorting.selection_sort
-                    elif sorting_algorithm == 1:
-                        sorting_algorithm = sorting.bubble_sort
-                    elif sorting_algorithm == 2:
-                        sorting_algorithm = sorting.insertion_sort
-                    elif sorting_algorithm == 3:
-                        sorting_algorithm = sorting.merge_sort
-                    elif sorting_algorithm == 4:
-                        sorting_algorithm = sorting.quick_sort
-                    elif sorting_algorithm == 5:
-                        sorting_algorithm = sorting.heap_sort
-                    elif sorting_algorithm == 6:
-                        sorting_algorithm = sorting.comb_sort
-                    start_time = timeit.default_timer()
-                    sorted_arr = sorting_algorithm(arr, ascending)
-                    end_time = timeit.default_timer()
-                    time_taken = (end_time - start_time) * 1000
-                    display_results(screen, font, result_zone, original_arr, sorted_arr, time_taken)
+                    if not arr:
+                        # Display a message in the result zone asking the user to insert a list
+                        pygame.draw.rect(screen, (255, 255, 255), result_zone)
+                        pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
+                        text_surface = font.render("Please insert a list of integers", True, (0, 0, 0))
+                        screen.blit(text_surface, (result_zone.x + 10, result_zone.y + 10))
+                    elif sorting_algorithm is not None and sorting_order is not None:
+                        ascending = (sorting_order == 0)
+                        if sorting_algorithm == 0:
+                            sorting_algorithm = sorting.selection_sort
+                        elif sorting_algorithm == 1:
+                            sorting_algorithm = sorting.bubble_sort
+                        elif sorting_algorithm == 2:
+                            sorting_algorithm = sorting.insertion_sort
+                        elif sorting_algorithm == 3:
+                            sorting_algorithm = sorting.merge_sort
+                        elif sorting_algorithm == 4:
+                            sorting_algorithm = sorting.quick_sort
+                        elif sorting_algorithm == 5:
+                            sorting_algorithm = sorting.heap_sort
+                        elif sorting_algorithm == 6:
+                            sorting_algorithm = sorting.comb_sort
+                        start_time = timeit.default_timer()
+                        sorted_arr = sorting_algorithm(arr, ascending)
+                        end_time = timeit.default_timer()
+                        time_taken = (end_time - start_time) * 1000
+                        display_results(screen, font, result_zone, original_arr, sorted_arr, time_taken)
                 if compare_button.collidepoint(event.pos):  # If the compare button is clicked
                     pygame.draw.rect(screen, (255, 255, 255), result_zone)  # Clear the result zone
                     pygame.draw.rect(screen, (0, 0, 0), result_zone, 2)
@@ -262,7 +269,7 @@ def main():
                     sorted_arr = []
                     text = default_text
                     lenght_text = ''
-                    text_zone, text = create_text_zone(screen, font, text)
+                    text_zone, text, default_text = create_text_zone(screen, font, text)
                     lenght_input, lenght_text = create_length_input(screen, font, lenght_text)
                     pygame.draw.rect(screen, (255, 255, 255), text_zone)
                     pygame.draw.rect(screen, (0, 0, 0), text_zone, 2)
@@ -287,7 +294,7 @@ def main():
                         else:
                             arr = list(map(int, text.split()))
                             original_arr = copy_list(arr)
-                        text_zone, text = create_text_zone(screen, font, text)  # Update the text zone display
+                        text_zone, text, default_text = create_text_zone(screen, font, text)  # Update the text zone display
         pygame.display.flip()
         clock.tick(60)
 
