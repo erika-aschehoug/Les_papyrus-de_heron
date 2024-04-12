@@ -1,6 +1,7 @@
 import sorting
 import timeit
 import matplotlib.pyplot as plt
+import random
 
 def execution_times_graph(execution_times, sorted_arr, original_arr, num_runs):
     plt.bar(execution_times.keys(), execution_times.values())
@@ -8,8 +9,14 @@ def execution_times_graph(execution_times, sorted_arr, original_arr, num_runs):
     plt.ylabel('Average Execution Time (in milliseconds)')
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
     plt.title(f'Average execution time over {num_runs} runs depending on different sorting algorithms')
-    plt.text(0.5, 1.08, f'List before sorting: {original_arr}', transform=plt.gca().transAxes, ha='center')
-    plt.text(0.5, 1.05, f'List after sorting: {sorted_arr}', transform=plt.gca().transAxes, ha='center')
+    if len(sorted_arr) > 20:
+        sorted_arr_str = f'{sorted_arr[:10]} ... {sorted_arr[-10:]}'
+        original_arr_str = f'{original_arr[:10]} ... {original_arr[-10:]}'
+    else:
+        sorted_arr_str = str(sorted_arr)
+        original_arr_str = str(original_arr)
+    plt.text(0.5, 1.08, f'List before sorting: {original_arr_str}', transform=plt.gca().transAxes, ha='center')
+    plt.text(0.5, 1.05, f'List after sorting: {sorted_arr_str}', transform=plt.gca().transAxes, ha='center')
     plt.text(0.5, 1.11, f'List length: {len(sorted_arr)}', transform=plt.gca().transAxes, ha='center')
     plt.text(0.5, 1.14, f'Sorting oder: {"Ascending" if sorted_arr == sorted(sorted_arr) else "Descending"}', transform=plt.gca().transAxes, ha='center')
     algorithm_names = {
@@ -23,18 +30,30 @@ def execution_times_graph(execution_times, sorted_arr, original_arr, num_runs):
     plt.xticks(list(algorithm_names.keys()), list(algorithm_names.values()))
     plt.show()
 
+def generate_random_list(length):
+    return [random.randint(-1000, 1000) for _ in range(length)]
+
+
+
 def main():
     print (f"\nWelcome to the Sorting Algorithm Visualizer !")
     while True:
         try:
-            print (f"\nEnter a list of real numbers separated by space:")
-            arr = list(map(int, input().split()))
-            if not arr:
-                raise ValueError("List cannot be empty.")
-            original_arr = arr.copy()
-            break
+            choice = input("\nDo you want to insert a list(1), or generate a random list between -1000 and 1000 inclusive(2)? (1/2): ").lower()
+            if choice == "1":
+                arr = list(map(int, input("Enter a list of real numbers separated by space: ").split()))
+                if not arr:
+                    raise ValueError("List cannot be empty.")
+                original_arr = arr.copy()
+                break
+            elif choice == "2":
+                length = int(input("Enter the desired length of the random list: "))
+                arr = original_arr = generate_random_list(length)
+                break
+            else:
+                print("Invalid choice. Please enter '1' or '2'.")
         except ValueError as e:
-            print(f"\nInvalid input: {e}. Please enter a list of real numbers separated by space.")
+            print(f"Invalid input: {e}. Please enter a valid list of real numbers separated by space.")
     print (f"\nSelect a sorting algorithm:")
     print (f"1. Selection Sort")
     print (f"2. Bubble Sort")
