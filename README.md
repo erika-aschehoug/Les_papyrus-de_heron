@@ -401,10 +401,10 @@ However, like bubble sort, it is not a stable sort, which means it does not main
 Each of these algorithms has its own strengths and weaknesses, and the best choice of algorithm can depend on the details of the specific task at hand. For example, if you know you’re dealing with small lists, bubble sort or insertion sort could be sufficient, but for larger lists or for lists where speed is a concern, you might want to go with something like quicksort or mergesort. If you need a stable sort (i.e., a sort that maintains the relative order of equal sort items), then merge sort would be a good choice. If you need to sort in-place (i.e., using only a small, constant amount of extra storage space), then heapsort could be the best option.
 
 ## Installation
-You'll need Python along with matplotlib and pygame libraries.
+You'll need Python along with matplotlib, timeit and pygame libraries.
 
 ```bash
-pip install matplotlib pygame
+pip install matplotlib pygame timeit
 ```
 
 ## Usage
