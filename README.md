@@ -24,7 +24,7 @@ def selection_sort(arr, ascending=True):
 
 ```
 
-![selection_sort](pictures\selection_sort.png)
+![selection_sort](pictures/selection_sort.png)
 The function `selection_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -61,7 +61,7 @@ def bubble_sort(arr, ascending=True):
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
 ```
-![bubble_sort](pictures\bubble_sort.png)
+![bubble_sort](pictures/bubble_sort.png)
 The function `bubble_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -102,7 +102,7 @@ def insertion_sort(arr, ascending=True):
         arr[j + 1] = key
     return arr
 ```
-![insertion_sort](pictures\insertion_sort.png)
+![insertion_sort](pictures/insertion_sort.png)
 The function `insertion_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -168,7 +168,7 @@ def merge_sort(arr, ascending=True):
             k += 1
     return arr
 ```
-![merge_sort](pictures\merge_sort.jpg)
+![merge_sort](pictures/merge_sort.jpg)
 The function `merge_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -215,7 +215,7 @@ def quick_sort(arr, ascending=True):
     return quick_sort(left, ascending) + middle + quick_sort(right, ascending)
 
 ```
-![quick_sort](pictures\quick_sort.jpg)
+![quick_sort](pictures/quick_sort.jpg)
 The function `quick_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -273,7 +273,7 @@ def heap_sort(arr, ascending=True):
         heapify(arr, i, 0)
     return arr
 ```
-![heap_sort](pictures\heap_sort.png)
+![heap_sort](pictures/heap_sort.png)
 The function `heap_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
@@ -324,7 +324,7 @@ def comb_sort(arr, ascending=True):
                 swapped = True
     return arr
 ```
-![comb_sort](pictures\comb_sort.png)
+![comb_sort](pictures/comb_sort.png)
 The function `comb_sort` takes two parameters: `arr`, which is the list to be sorted, and `ascending`, a boolean value that determines whether the list should be sorted in ascending order (default is `True`).
 
 
